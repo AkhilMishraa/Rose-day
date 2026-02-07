@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Rose Day ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+        font-family: 'Segoe UI', sans-serif;
+        text-align: center;
+        color: #8b0000;
+    }
+
+    .card {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        max-width: 320px;
+    }
+
+    .rose {
+        font-size: 90px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .rose:hover {
+        transform: scale(1.2) rotate(-5deg);
+    }
+
+    h1 {
+        margin: 15px 0;
+        font-size: 24px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    button {
+        margin: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        background: #ff4d6d;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #e63950;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div id="roseSection">
+        <div class="rose" onclick="showQuestion()">🌹</div>
+        <h1>Happy Rose Day<br>Anamika ❤️</h1>
+        <p>(Tap the rose)</p>
+    </div>
+
+    <div id="questionSection" class="hidden">
+        <h1>Will you be my Valentine, Anamika? 💖</h1>
+        <button onclick="yesClicked()">Yes 🥰</button>
+        <button onclick="noClicked()">No 🙈</button>
+    </div>
+
+    <div id="yesSection" class="hidden">
+        <h1>You just made me the happiest 💘</h1>
+        <p>Happy Rose Day, my Valentine 🌹❤️</p>
+    </div>
+</div>
+
+<script>
+    function showQuestion() {
+        document.getElementById("roseSection").classList.add("hidden");
+        document.getElementById("questionSection").classList.remove("hidden");
+    }
+
+    function yesClicked() {
+        document.getElementById("questionSection").classList.add("hidden");
+        document.getElementById("yesSection").classList.remove("hidden");
+    }
+
+    function noClicked() {
+        alert("Oops 😅 Try again… because you know the answer ❤️");
+    }
+</script>
+</body>
+</html>
