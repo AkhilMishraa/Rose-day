@@ -3,61 +3,86 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Happy Rose Day ❤️</title>
+<title>For Anamika 🤍</title>
 
 <style>
     body {
         margin: 0;
         height: 100vh;
+        background: linear-gradient(135deg, #ffe6ea, #f9c5d1);
         display: flex;
-        align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+        align-items: center;
         font-family: 'Segoe UI', sans-serif;
-        text-align: center;
-        color: #8b0000;
+        overflow: hidden;
     }
 
     .card {
         background: white;
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        max-width: 320px;
+        padding: 30px 20px;
+        border-radius: 22px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        text-align: center;
+        max-width: 330px;
+        z-index: 2;
     }
 
     .rose {
         font-size: 90px;
         cursor: pointer;
-        transition: transform 0.3s ease;
+        animation: glow 2s infinite alternate;
     }
 
-    .rose:hover {
-        transform: scale(1.2) rotate(-5deg);
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #ff9aa2; }
+        to { text-shadow: 0 0 25px #ff6f91; }
     }
 
     h1 {
-        margin: 15px 0;
+        margin: 15px 0 5px;
+        color: #8b0000;
         font-size: 24px;
+    }
+
+    p {
+        color: #555;
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 10px 24px;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        background: #ff6f91;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    button:hover {
+        transform: scale(1.08);
+        background: #ff4d6d;
     }
 
     .hidden {
         display: none;
     }
 
-    button {
-        margin: 10px;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 20px;
-        background: #ff4d6d;
-        color: white;
-        font-size: 16px;
-        cursor: pointer;
+    /* Floating symbols */
+    .heart {
+        position: absolute;
+        bottom: -20px;
+        font-size: 18px;
+        animation: float 6s linear infinite;
+        opacity: 0.6;
     }
 
-    button:hover {
-        background: #e63950;
+    @keyframes float {
+        0% { transform: translateY(0); opacity: 0.7; }
+        100% { transform: translateY(-110vh); opacity: 0; }
     }
 </style>
 </head>
@@ -65,38 +90,77 @@
 <body>
 
 <div class="card">
+
+    <!-- Opening -->
     <div id="roseSection">
-        <div class="rose" onclick="showQuestion()">🌹</div>
-        <h1>Happy Rose Day<br>Anamika ❤️</h1>
-        <p>(Tap the rose)</p>
+        <div class="rose" onclick="showPromises()">🤍</div>
+        <h1>Happy Promise Day</h1>
+        <p>
+            Anamika ❤️<br>
+            Tap the heart
+        </p>
     </div>
 
-    <div id="questionSection" class="hidden">
-        <h1>Will you be my Valentine, Anamika? 💖</h1>
-        <button onclick="yesClicked()">Yes 🥰</button>
-        <button onclick="noClicked()">No 🙈</button>
+    <!-- Promises -->
+    <div id="promiseSection" class="hidden">
+        <h1>My Promises to You 🤞</h1>
+        <p id="promiseText"></p>
+        <button onclick="nextPromise()">Next 🤍</button>
     </div>
 
-    <div id="yesSection" class="hidden">
-        <h1>You just made me the happiest 💘</h1>
-        <p>Happy Rose Day, my Valentine 🌹❤️</p>
+    <!-- Final Message -->
+    <div id="finalSection" class="hidden">
+        <h1>🤍🤞</h1>
+        <p>
+            These aren’t just words.<br>
+            They’re my promises to you.<br><br>
+            Happy Promise Day, Anamika ❤️<br><br>
+            — Always yours
+        </p>
     </div>
+
 </div>
 
 <script>
-    function showQuestion() {
+    const promises = [
+        "I promise to always respect you.",
+        "I promise to listen, even when it’s difficult.",
+        "I promise to stand by you in every phase.",
+        "I promise to choose you — every single day.",
+        "And I promise… my heart is yours 🤍"
+    ];
+
+    let index = 0;
+
+    function showPromises() {
         document.getElementById("roseSection").classList.add("hidden");
-        document.getElementById("questionSection").classList.remove("hidden");
+        document.getElementById("promiseSection").classList.remove("hidden");
+        document.getElementById("promiseText").innerText = promises[index];
+        createFloating();
     }
 
-    function yesClicked() {
-        document.getElementById("questionSection").classList.add("hidden");
-        document.getElementById("yesSection").classList.remove("hidden");
+    function nextPromise() {
+        index++;
+        if (index < promises.length) {
+            document.getElementById("promiseText").innerText = promises[index];
+        } else {
+            document.getElementById("promiseSection").classList.add("hidden");
+            document.getElementById("finalSection").classList.remove("hidden");
+        }
     }
 
-    function noClicked() {
-        alert("Oops 😅 Try again… because you know the answer ❤️");
+    function createFloating() {
+        setInterval(() => {
+            const el = document.createElement("div");
+            el.classList.add("heart");
+            el.innerHTML = "🤍";
+            el.style.left = Math.random() * 100 + "vw";
+            el.style.animationDuration = (Math.random() * 3 + 4) + "s";
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 7000);
+        }, 500);
     }
 </script>
+
 </body>
 </html>
