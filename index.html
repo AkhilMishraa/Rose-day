@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>For Anamika 🤍</title>
+<title>For Anamika ❤️</title>
 
 <style>
     body {
         margin: 0;
         height: 100vh;
-        background: linear-gradient(135deg, #ffe6ea, #f9c5d1);
+        background: linear-gradient(135deg, #ffdde1, #ee9ca7);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -19,27 +19,27 @@
 
     .card {
         background: white;
-        padding: 30px 20px;
+        padding: 30px 22px;
         border-radius: 22px;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.25);
         text-align: center;
-        max-width: 330px;
+        max-width: 340px;
         z-index: 2;
     }
 
-    .rose {
+    .icon {
         font-size: 90px;
         cursor: pointer;
         animation: glow 2s infinite alternate;
     }
 
     @keyframes glow {
-        from { text-shadow: 0 0 10px #ff9aa2; }
-        to { text-shadow: 0 0 25px #ff6f91; }
+        from { text-shadow: 0 0 10px #ff6f91; }
+        to { text-shadow: 0 0 25px #ff1e4d; }
     }
 
     h1 {
-        margin: 15px 0 5px;
+        margin: 15px 0 8px;
         color: #8b0000;
         font-size: 24px;
     }
@@ -47,16 +47,16 @@
     p {
         color: #555;
         font-size: 15px;
-        line-height: 1.5;
+        line-height: 1.6;
     }
 
     button {
-        margin-top: 15px;
-        padding: 10px 24px;
+        margin-top: 16px;
+        padding: 10px 26px;
         border: none;
         border-radius: 25px;
         font-size: 16px;
-        background: #ff6f91;
+        background: #ff4d6d;
         color: white;
         cursor: pointer;
         transition: transform 0.2s ease;
@@ -64,14 +64,13 @@
 
     button:hover {
         transform: scale(1.08);
-        background: #ff4d6d;
+        background: #e63950;
     }
 
     .hidden {
         display: none;
     }
 
-    /* Floating symbols */
     .heart {
         position: absolute;
         bottom: -20px;
@@ -91,9 +90,9 @@
 
 <div class="card">
 
-    <!-- Opening -->
-    <div id="roseSection">
-        <div class="rose" onclick="showPromises()">🤍</div>
+    <!-- Start -->
+    <div id="startSection">
+        <div class="icon" onclick="startFlow()">❤️</div>
         <h1>Happy Promise Day</h1>
         <p>
             Anamika ❤️<br>
@@ -103,19 +102,30 @@
 
     <!-- Promises -->
     <div id="promiseSection" class="hidden">
-        <h1>My Promises to You 🤞</h1>
+        <h1>My Promises 🤍</h1>
         <p id="promiseText"></p>
         <button onclick="nextPromise()">Next 🤍</button>
     </div>
 
-    <!-- Final Message -->
-    <div id="finalSection" class="hidden">
-        <h1>🤍🤞</h1>
+    <!-- Propose Day -->
+    <div id="proposeSection" class="hidden">
+        <h1>💍</h1>
         <p>
-            These aren’t just words.<br>
-            They’re my promises to you.<br><br>
-            Happy Promise Day, Anamika ❤️<br><br>
-            — Always yours
+            These promises come from my heart.<br>
+            Not just for today,<br>
+            but for every tomorrow ❤️<br><br>
+            So on Propose Day…
+        </p>
+        <button onclick="finalQuestion()">One last thing 💖</button>
+    </div>
+
+    <!-- Final Question -->
+    <div id="finalSection" class="hidden">
+        <h1>❤️</h1>
+        <p>
+            Will you be my Valentine,<br>
+            my person,<br>
+            my always — Anamika? 💖
         </p>
     </div>
 
@@ -124,7 +134,7 @@
 <script>
     const promises = [
         "I promise to always respect you.",
-        "I promise to listen, even when it’s difficult.",
+        "I promise to listen, even when it’s hard.",
         "I promise to stand by you in every phase.",
         "I promise to choose you — every single day.",
         "And I promise… my heart is yours 🤍"
@@ -132,11 +142,11 @@
 
     let index = 0;
 
-    function showPromises() {
-        document.getElementById("roseSection").classList.add("hidden");
+    function startFlow() {
+        document.getElementById("startSection").classList.add("hidden");
         document.getElementById("promiseSection").classList.remove("hidden");
         document.getElementById("promiseText").innerText = promises[index];
-        createFloating();
+        createHearts();
     }
 
     function nextPromise() {
@@ -145,20 +155,25 @@
             document.getElementById("promiseText").innerText = promises[index];
         } else {
             document.getElementById("promiseSection").classList.add("hidden");
-            document.getElementById("finalSection").classList.remove("hidden");
+            document.getElementById("proposeSection").classList.remove("hidden");
         }
     }
 
-    function createFloating() {
+    function finalQuestion() {
+        document.getElementById("proposeSection").classList.add("hidden");
+        document.getElementById("finalSection").classList.remove("hidden");
+    }
+
+    function createHearts() {
         setInterval(() => {
-            const el = document.createElement("div");
-            el.classList.add("heart");
-            el.innerHTML = "🤍";
-            el.style.left = Math.random() * 100 + "vw";
-            el.style.animationDuration = (Math.random() * 3 + 4) + "s";
-            document.body.appendChild(el);
-            setTimeout(() => el.remove(), 7000);
-        }, 500);
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 7000);
+        }, 450);
     }
 </script>
 
